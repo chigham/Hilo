@@ -20,12 +20,12 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
-        self.dice = []
+        self.card = []
         self.is_playing = True
         self.score = 0
         self.total_score = 0
 
-        for i in range(5):
+        for i in range(13):
             die = Die()
             self.dice.append(die)
 
@@ -50,8 +50,8 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        roll_dice = input("Roll dice? [y/n] ")
-        self.is_playing = (roll_dice == "y")
+        higher_lower = input("Higher or lower? [h/l] ")
+        self.is_playing = (higher_lower == "h")
 
 
 #Christopher ->       
