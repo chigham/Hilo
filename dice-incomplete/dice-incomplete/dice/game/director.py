@@ -13,6 +13,7 @@ class Director:
         total_score (int): The score for the entire game.
     """
 
+#Lewis ->
     def __init__(self):
         """Constructs a new Director.
         
@@ -28,6 +29,8 @@ class Director:
             die = Die()
             self.dice.append(die)
 
+
+#Don't Change ->
     def start_game(self):
         """Starts the game by running the main game loop.
         
@@ -39,6 +42,8 @@ class Director:
             self.do_updates()
             self.do_outputs()
 
+
+#LEwis ->
     def get_inputs(self):
         """Ask the user if they want to roll.
 
@@ -47,7 +52,9 @@ class Director:
         """
         roll_dice = input("Roll dice? [y/n] ")
         self.is_playing = (roll_dice == "y")
-       
+
+
+#Christopher ->       
     def do_updates(self):
         """Updates the player's score.
 
@@ -63,6 +70,8 @@ class Director:
             self.score += die.points 
         self.total_score += self.score
 
+
+#Christopher ->       
     def do_outputs(self):
         """Displays the dice and the score. Also asks the player if they want to roll again. 
 
