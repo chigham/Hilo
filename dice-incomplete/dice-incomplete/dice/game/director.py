@@ -1,4 +1,4 @@
-from game.die import Die
+from game.card import Card
 
 
 class Director:
