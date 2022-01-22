@@ -3,7 +3,7 @@ import random
 
 class Card:
     """A rectangular piece of cardboard or other material with an identical pattern on one side and 
-    different numbers and symbols.
+    different numbers and symbols on the other.
 
     The responsibility of Card is to keep track of the number of the card and calculate the points for 
     it.
