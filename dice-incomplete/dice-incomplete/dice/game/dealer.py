@@ -29,12 +29,12 @@ class Dealer:
             card = Card()
             self.cards.append(card)
         
-        # Monica's attributes
         self.is_playing = True
-        self.previous = Card()
+        self.previous = ""  # This will become Card() later
         self.current = Card()
         self.hi_lo = ""
-        self.score = 300
+        #self.score = 0      # Score for a given card
+        self.total_score = 300
 
 
 #Don't Change ->
@@ -44,6 +44,7 @@ class Dealer:
         Args:
             self (Director): an instance of Director.
         """
+        
         while self.is_playing:
             self.get_inputs()
             self.do_updates()
@@ -57,8 +58,8 @@ class Dealer:
         Args:
             self (Director): An instance of Director.
         """
-        higher_lower = input("Higher or lower? [h/l] ")
-        self.is_playing = (higher_lower == "h")
+        self.hi_lo = input("Higher or lower? [h/l] ").lower()
+        self.is_playing = (self.hi_lo == "h")
 
 
 #Christopher ->       
@@ -71,15 +72,23 @@ class Dealer:
         if not self.is_playing:
             return 
 
-        # Reset how much we are adding to the score
-        self.score = 0
+        self.previous = self.current.value
         
         # Add to the total score (100, -75, 0)
-        for i in range(len(self.cards)):
-            card = self.cards[i]
-            card.draw()
-            self.score += card.points 
-        self.total_score += self.score
+
+        self.current.pick()
+        print(f"The card is: {self.current.value}")
+        
+        if self.hi_lo == 'h' and self.current.value > self.previous.value:
+            self.total_score += 100
+        elif self.hi_lo == 'h' and self.current.value < self.previous.value:
+            self.total_score += -75
+        elif self.hi_lo == 'l' and self.current.value > self.previous.value:
+            self.total_score += -75
+        elif self.hi_lo == 'l' and self.current.value < self.previous.value:
+            self.total_score += 100
+        else:
+            self.total_score += 0
 
 
 #Christopher ->       
@@ -89,14 +98,11 @@ class Dealer:
         Args:
             self (Director): An instance of Director.
         """
-        if not self.is_playing:
-            return
+        if self.total_score <= 0:
+            self.is_playing = False
+            print(f"You lose. Your score is {self.total_score}")
         
-        values = ""
-        for i in range(len(self.cards)):
-            card = self.cards[i]
-            values += f"{card.value} "
-
-        print(f"You rolled: {values}")
-        print(f"Your score is: {self.total_score}\n")
-        self.is_playing == (self.score > 0)
+        # Monica's work
+        print(f"Your score is: {self.score}")
+        keep_playing = input("Play again? [y/n] ")
+        self.is_playing = (keep_playing == "y")
