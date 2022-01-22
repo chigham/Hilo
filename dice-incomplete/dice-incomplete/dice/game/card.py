@@ -1,31 +1,30 @@
 import random
 
 
-# TODO: Implement the Die class as follows...
-
-# 1) Add the class declaration. Use the following class comment.
 class Card:
-    """A small cube with a different number of spots on each of its six sides.
+    """A rectangular piece of cardboard or other material with an identical pattern on one side and 
+    different numbers and symbols.
 
-    The responsibility of Die is to keep track of the side facing up and calculate the points for 
+    The responsibility of Card is to keep track of the number of the card and calculate the points for 
     it.
    
     Attributes:
-        value (int): The number of spots on the side facing up.
-        points (int): The number of points the die is worth.
+        value (int): The number of the card.
     """
-    pass
 
-# 2) Create the class constructor. Use the following method comment.
-"""Constructs a new instance of Die with a value and points attribute.
+    def __init__(self):
+        """Constructs a new instance of Card.
 
         Args:
-            self (Die): An instance of Die.
+            self (Card): An instance of Card.
         """
 
-# 3) Create the roll(self) method. Use the following method comment.
-"""Generates a new random value and calculates the points.
+        self.value = 0
+
+    def pick(self):
+        """Generates a new random value for the card.
         
         Args:
-            self (Die): An instance of Die.
+            self (Card): An instance of Card.
         """
+        self.value = random.randint(1,13)
