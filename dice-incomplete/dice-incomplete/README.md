@@ -5,7 +5,7 @@ roll at least a one or a five you can try again. If not the game is over.
 
 ## Getting Started
 ---
-Make sure you have Python 3.8.0 or newer installed and running on your machine. Open a terminal and 
+Make sure you have Python 3.10.1 or newer installed and running on your machine. Open a terminal and 
 browse to the project's root folder. Start the program by running the following command.
 ```
 python3 dice 
@@ -26,8 +26,12 @@ root                    (project root folder)
 
 ## Required Technologies
 ---
-* Python 3.8.0
+* Python 3.10.1
 
 ## Authors
 ---
-* Matt Manley (manleym@byui.edu)
+* Johnathan Ruiz (rui18007@byui.edu)
+* Christopher Higham
+* Mónica Barrera
+* Lewis Smith
+* James Thomas
