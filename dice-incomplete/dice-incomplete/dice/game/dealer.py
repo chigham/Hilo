@@ -34,7 +34,7 @@ class Dealer:
         self.current = Card()
         self.hi_lo = ""
         #self.score = 0      # Score for a given card
-        self.total_score = 300
+        self.total_score = 0
 
 
 #Don't Change ->
@@ -51,15 +51,22 @@ class Dealer:
             self.do_outputs()
 
 
-#LEwis ->
+#Lewis ->
     def get_inputs(self):
         """Ask the user if they want to roll.
 
         Args:
             self (Director): An instance of Director.
         """
+        if self.previous == "":
+            temp_card = Card()
+            temp_card.pick()
+            self.previous = temp_card.value
+            print(f"Your first card is {self.previous}")
+        
         self.hi_lo = input("Higher or lower? [h/l] ").lower()
-        self.is_playing = (self.hi_lo == "h")
+        #self.is_playing = (self.hi_lo == "h")
+        
 
 
 #Christopher ->       
@@ -77,15 +84,15 @@ class Dealer:
         # Add to the total score (100, -75, 0)
 
         self.current.pick()
-        print(f"The card is: {self.current.value}")
+        #print(f"The card is: {self.current.value}")
         
-        if self.hi_lo == 'h' and self.current.value > self.previous.value:
+        if self.hi_lo == 'h' and self.current.value > self.previous:
             self.total_score += 100
-        elif self.hi_lo == 'h' and self.current.value < self.previous.value:
+        elif self.hi_lo == 'h' and self.current.value < self.previous:
             self.total_score += -75
-        elif self.hi_lo == 'l' and self.current.value > self.previous.value:
+        elif self.hi_lo == 'l' and self.current.value > self.previous:
             self.total_score += -75
-        elif self.hi_lo == 'l' and self.current.value < self.previous.value:
+        elif self.hi_lo == 'l' and self.current.value < self.previous:
             self.total_score += 100
         else:
             self.total_score += 0
@@ -102,7 +109,7 @@ class Dealer:
             self.is_playing = False
             print(f"You lose. Your score is {self.total_score}")
         
-        # Monica's work
-        print(f"Your score is: {self.score}")
+        print(f"You drew {self.current.value}")
+        print(f"Your score is: {self.total_score}")
         keep_playing = input("Play again? [y/n] ")
         self.is_playing = (keep_playing == "y")
