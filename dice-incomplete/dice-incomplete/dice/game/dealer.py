@@ -84,7 +84,7 @@ class Dealer:
         # Add to the total score (100, -75, 0)
 
         self.current.pick()
-        print(f"The card is: {self.current.value}")
+        #print(f"The card is: {self.current.value}")
         
         if self.hi_lo == 'h' and self.current.value > self.previous:
             self.total_score += 100
