@@ -45,7 +45,7 @@ root                    (project root folder)
 ## Authors
 ---
 * Johnathan Ruiz (rui18007@byui.edu)
-* Christopher Higham ()
-* Mónica Barrera ()
-* Lewis Smith ()
+* Christopher Higham (hig21011@byui.edu)
+* Mónica Barrera (bar21095@byui.edu)
+* Lewis Smith (smi21061@byui.edu)
 * James Thomas ()
