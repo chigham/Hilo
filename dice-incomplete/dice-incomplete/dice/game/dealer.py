@@ -20,21 +20,12 @@ class Dealer:
         Args:
             self (Director): an instance of Director.
         """
-        self.cards = []
         self.is_playing = True
-        self.score = 0
-        self.total_score = 0
-
-        for i in range(13):
-            card = Card()
-            self.cards.append(card)
-        
-        self.is_playing = True
-        self.previous = ""  # This will become Card() later
+        self.previous = 0
         self.current = Card()
         self.hi_lo = ""
-        #self.score = 0      # Score for a given card
-        self.total_score = 0
+        self.total_score = 300
+        self.first_turn = True
 
 
 #Don't Change ->
@@ -53,15 +44,16 @@ class Dealer:
 
 #Lewis ->
     def get_inputs(self):
-        """Ask the user if they want to roll.
+        """Ask the user if they want to roll. Draw a card before the first turn.
 
         Args:
             self (Director): An instance of Director.
         """
-        if self.previous == "":
+        if self.first_turn:
             temp_card = Card()
             temp_card.pick()
             self.previous = temp_card.value
+            print(f"Let's begin. Your starting score is {self.total_score}")
             print(f"Your first card is {self.previous}")
         
         self.hi_lo = input("Higher or lower? [h/l] ").lower()
@@ -79,12 +71,14 @@ class Dealer:
         if not self.is_playing:
             return 
 
-        self.previous = self.current.value
+        if self.first_turn:
+            self.first_turn = False
+        else:
+            self.previous = self.current.value
         
         # Add to the total score (100, -75, 0)
 
         self.current.pick()
-        #print(f"The card is: {self.current.value}")
         
         if self.hi_lo == 'h' and self.current.value > self.previous:
             self.total_score += 100
@@ -100,7 +94,7 @@ class Dealer:
 
 #Christopher ->       
     def do_outputs(self):
-        """Displays the dice and the score. Also asks the player if they want to roll again. 
+        """Displays the card and the score. Also asks the player if they want to draw again. 
 
         Args:
             self (Director): An instance of Director.
@@ -111,5 +105,5 @@ class Dealer:
         
         print(f"You drew {self.current.value}")
         print(f"Your score is: {self.total_score}")
-        keep_playing = input("Play again? [y/n] ")
+        keep_playing = input("Draw again? [y/n] ")
         self.is_playing = (keep_playing == "y")
