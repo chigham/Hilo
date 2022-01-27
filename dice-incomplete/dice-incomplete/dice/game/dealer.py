@@ -4,21 +4,23 @@ from game.card import Card
 class Dealer:
     """A person who directs the game. 
     
-    The responsibility of a Director is to control the sequence of play.
+    The responsibility of a Dealer is to control the sequence of play.
 
     Attributes:
-        dice (List[Die]): A list of Die instances.
         is_playing (boolean): Whether or not the game is being played.
-        score (int): The score for one round of play.
+        previous (int): The value of the previous card.
+        current (int): The value of the current card.
+        hi_lo (string): The answer of the player to the question High/Low.
         total_score (int): The score for the entire game.
+        first_turn (boolean): Whether or not the first turn is being played.
     """
 
 #Lewis ->
     def __init__(self):
-        """Constructs a new Director.
+        """Constructs a new Dealer.
         
         Args:
-            self (Director): an instance of Director.
+            self (Dealer): an instance of Dealer.
         """
         self.is_playing = True
         self.previous = 0
@@ -33,7 +35,7 @@ class Dealer:
         """Starts the game by running the main game loop.
         
         Args:
-            self (Director): an instance of Director.
+            self (Dealer): an instance of Dealer.
         """
         
         while self.is_playing:
@@ -44,10 +46,11 @@ class Dealer:
 
 #Lewis ->
     def get_inputs(self):
-        """Ask the user if they want to roll. Draw a card before the first turn.
+        """Ask the user if they want to play. Draw a card before the first turn.
+           Then ask the user to guess if the next card is higher or lower.
 
         Args:
-            self (Director): An instance of Director.
+            self (Dealer): An instance of Dealer.
         """
         if self.first_turn:
             temp_card = Card()
@@ -63,10 +66,11 @@ class Dealer:
 
 #Christopher ->       
     def do_updates(self):
-        """Updates the player's score.
+        """Updates the player's score and prints the value of the
+           second card
 
         Args:
-            self (Director): An instance of Director.
+            self (Dealer): An instance of Dealer.
         """
         if not self.is_playing:
             return 
@@ -79,6 +83,7 @@ class Dealer:
         # Add to the total score (100, -75, 0)
 
         self.current.pick()
+        print(f"Next card is {self.current.value}")
         
         if self.hi_lo == 'h' and self.current.value > self.previous:
             self.total_score += 100
@@ -103,7 +108,6 @@ class Dealer:
             self.is_playing = False
             print(f"You lose. Your score is {self.total_score}")
         
-        print(f"You drew {self.current.value}")
         print(f"Your score is: {self.total_score}")
         keep_playing = input("Draw again? [y/n] ")
         self.is_playing = (keep_playing == "y")
