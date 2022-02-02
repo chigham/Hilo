@@ -107,7 +107,7 @@ class Dealer:
         if self.total_score <= 0:
             self.is_playing = False
             print(f"You lose. Your score is {self.total_score}")
-        else
+        else:
             print(f"Your score is: {self.total_score}")
             keep_playing = input("Draw again? [y/n] ")
             self.is_playing = (keep_playing == "y")
