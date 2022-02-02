@@ -102,7 +102,7 @@ class Dealer:
         """Displays the card and the score. Also asks the player if they want to draw again. 
 
         Args:
-            self (Director): An instance of Director.
+            self (Dealer): An instance of Dealer.
         """
         if self.total_score <= 0:
             self.is_playing = False
